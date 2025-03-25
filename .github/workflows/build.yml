@@ -76,19 +76,19 @@ jobs:
           prerelease: false
 
       - name: Download Linux Binary
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: snap-fetch-x86_64-unknown-linux-gnu
           path: ./
 
       - name: Download Windows Binary
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: snap-fetch-x86_64-pc-windows-msvc
           path: ./
 
       - name: Download macOS Binary
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: snap-fetch-x86_64-apple-darwin
           path: ./
