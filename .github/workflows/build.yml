@@ -75,23 +75,29 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: Create artifacts directory
+        run: mkdir -p artifacts
+
       - name: Download Linux Binary
         uses: actions/download-artifact@v4
         with:
           name: snap-fetch-x86_64-unknown-linux-gnu
-          path: ./
+          path: artifacts
 
       - name: Download Windows Binary
         uses: actions/download-artifact@v4
         with:
           name: snap-fetch-x86_64-pc-windows-msvc
-          path: ./
+          path: artifacts
 
       - name: Download macOS Binary
         uses: actions/download-artifact@v4
         with:
           name: snap-fetch-x86_64-apple-darwin
-          path: ./
+          path: artifacts
+
+      - name: List downloaded artifacts
+        run: ls -la artifacts/
 
       - name: Upload Linux Release Asset
         uses: actions/upload-release-asset@v1
@@ -99,7 +105,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./snap-fetch
+          asset_path: artifacts/snap-fetch
           asset_name: snap-fetch-linux-x86_64
           asset_content_type: application/octet-stream
 
@@ -109,7 +115,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./snap-fetch.exe
+          asset_path: artifacts/snap-fetch.exe
           asset_name: snap-fetch-windows-x86_64.exe
           asset_content_type: application/octet-stream
 
@@ -119,6 +125,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./snap-fetch
+          asset_path: artifacts/snap-fetch
           asset_name: snap-fetch-macos-x86_64
           asset_content_type: application/octet-stream 
