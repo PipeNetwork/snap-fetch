@@ -15,7 +15,7 @@ use std::time::Instant;
 use tokio::sync::Semaphore;
 use tracing::{info, warn};
 
-const STATUS_URL: &str = "https://data.pipenetwork.co/publicStatus";
+const STATUS_URL: &str = "https://data.pipenetwork.com/publicStatus";
 const DEFAULT_CONCURRENCY: usize = 30;
 const DEFAULT_RANGE_SIZE: u64 = 10 * 1024 * 1024; // 10MB chunks
 const MAX_RETRIES: u32 = 3;
@@ -59,7 +59,7 @@ struct Args {
     #[clap(long, default_value_t = MAX_RETRIES)]
     max_retries: u32,
 
-    /// Custom URL for the status JSON (default: https://data.pipenetwork.co/publicStatus)
+    /// Custom URL for the status JSON (default: https://data.pipenetwork.com/publicStatus)
     #[clap(long)]
     status_url: Option<String>,
 
@@ -229,7 +229,7 @@ async fn main() -> Result<()> {
         for file in &status.files {
             let mut file_clone = file.clone();
             // Replace the domain part of the URL while keeping the path and query parameters
-            if let Some(path_query) = file.public_url.strip_prefix("https://data.pipenetwork.co/") {
+            if let Some(path_query) = file.public_url.strip_prefix("https://data.pipenetwork.com/") {
                 file_clone.public_url =
                     format!("{}/{}", base_url.trim_end_matches('/'), path_query);
                 info!(
