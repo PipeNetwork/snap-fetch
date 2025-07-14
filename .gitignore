@@ -1,1 +1,52 @@
-/target
+# Rust build artifacts
+/target/
+
+# Backup files
+*.rs.bk
+*.bak
+*~
+
+# IDE and editor files
+.idea/
+*.swp
+*.swo
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+
+# System files
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Log files
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+*.profraw
+*.profdata
+
+# Documentation build
+/target/doc/
+
+# Benchmark results
+/target/criterion/
+
+# Development scripts and notes
+/dev-scripts/
+/notes/
+TODO.txt
+NOTES.txt
+
+# Downloads directory (if used by the app)
+/downloads/
